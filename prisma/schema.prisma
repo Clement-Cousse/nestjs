@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  email         String   @unique
+  password      String
+  firstname     String
+  lastname      String
+  phone         String
+  structureName String
+  postalCode    String
+  siret         String   @unique
+  type          UserType @relation(fields: [typeId], references: [id])
+  typeId        Int
+  isVerified    Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+}
+
+model UserType {
+  id      Int    @id @default(autoincrement())
+  libelle String @unique
+  users   User[]
+}
+
+model Listing {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+  price       Int
+}
