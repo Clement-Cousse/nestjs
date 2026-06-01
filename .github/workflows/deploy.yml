@@ -21,7 +21,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             # 1. Se déplacer dans le dossier du projet sur le VPS
-            cd /var/www/mairie
+            cd /var/www/mairie/nestjs
 
             # 2. Récupérer la dernière version du code (Assure-toi d'avoir configuré git sur le VPS)
             git pull origin main
